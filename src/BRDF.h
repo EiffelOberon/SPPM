@@ -16,9 +16,20 @@ public:
     }
 };
 
-enum { 
-    DIFFUSE, MIRROR, GLASS, LIGHT, MARBLE, FLOOR, WALL, DESK, STANFORD_MODEL, WATER, TEAPOT 
-} BRDF_TYPES;
+enum BrdfTypes 
+{ 
+    DIFFUSE, 
+    MIRROR, 
+    GLASS, 
+    LIGHT, 
+    MARBLE, 
+    FLOOR, 
+    WALL, 
+    DESK, 
+    STANFORD_MODEL, 
+    WATER, 
+    TEAPOT 
+};
 
 const BRDF BRDFs[] = {
     BRDF(0, 1, 0,       0.7, 0, 0,      0), // DIFFUSE

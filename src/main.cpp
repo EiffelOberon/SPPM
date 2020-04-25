@@ -2,9 +2,9 @@
 #include "Camera.h"
 
 Object* genWalls() {
-    Texture *textureBottom = new Texture("../data/bottom.ppm");
-    Texture *textureBack = new Texture("../data/back.ppm");
-    Texture *textureTop = new Texture("../data/top.ppm");
+    Texture *textureBottom = new Texture("./data/bottom.ppm");
+    Texture *textureBack = new Texture("./data/back.ppm");
+    Texture *textureTop = new Texture("./data/top.ppm");
     
     TextureMapper *color_back = new TextureMapper(Color(1, 1, 1));
     TextureMapper *color_front = new TextureMapper(Color(0.8, 0.2, 0.2));
@@ -69,7 +69,7 @@ Object* genWalls() {
 }
 
 Object* genDesk() {
-    Texture *textureBottom = new Texture("../data/bottom.ppm");
+    Texture *textureBottom = new Texture("./data/bottom.ppm");
     
     TextureMapper *color = new TextureMapper(Color(1, 1, 1));
     
@@ -109,7 +109,7 @@ Object* genLight(Point p, double r) {
 
 Scene *sceneBox() {
     Object *bunny = new Object;
-    bunny->importPly("../data/bunny.ply",  new TextureMapper(Color(0.4, 0.8, 0.8)), STANFORD_MODEL);    
+    bunny->importPly("./data/bunny.ply",  new TextureMapper(Color(0.4, 0.8, 0.8)), STANFORD_MODEL);    
     
     bunny->scale(
         2.8, 0, 0, 0.24,
@@ -120,7 +120,7 @@ Scene *sceneBox() {
     bunny->center->print();
     
     Object *water = new Object;
-    water->importPly("../data/water.ply",  new TextureMapper(Color(1, 1, 1)), WATER);    
+    water->importPly("./data/water.ply",  new TextureMapper(Color(1, 1, 1)), WATER);    
     water->scale(
         1. / 5.52799 * 1.2, 0, 0, -0.6,
         0, 0.12 / (1.85354 - 1.34492), 0, -0.31731 + 0.08,
@@ -130,7 +130,7 @@ Scene *sceneBox() {
     water->printBox();
     
     Object *teapot = new Object;
-    teapot->importBpt("../data/teapot.bpt", new TextureMapper(Color(0.1, 0.8, 0.8)), LIGHT); 
+    teapot->importBpt("./data/teapot.bpt", new TextureMapper(Color(0.1, 0.8, 0.8)), LIGHT); 
     teapot->scale(
         -0.02, 0, 0, 0,
         0, 0, 0.02, 0,
@@ -152,7 +152,7 @@ Scene *sceneBox() {
 
 Scene *sceneTeapot() {
     Object *water = new Object;
-    water->importPly("../data/water.ply",  new TextureMapper(Color(1, 1, 1)), WATER);    
+    water->importPly("./data/water.ply",  new TextureMapper(Color(1, 1, 1)), WATER);    
     water->scale(
         1. / 5.52799 * 1.2, 0, 0, -0.6,
         0, 0.12 / (1.85354 - 1.34492), 0, -0.31731 + -0.05,
@@ -162,7 +162,7 @@ Scene *sceneTeapot() {
     water->printBox();    
     
     Object *teapot = new Object;
-    teapot->importBpt("../data/teapot.bpt", new TextureMapper(Color(0.1, 0.8, 0.8)), TEAPOT); 
+    teapot->importBpt("./data/teapot.bpt", new TextureMapper(Color(0.1, 0.8, 0.8)), TEAPOT); 
     teapot->scale(
         -0.08, 0, 0, 0.02,
         0, 0, 0.08, -0.05,
@@ -188,9 +188,13 @@ int main(int argc, char *argv[]) {
     camera->setLens(0.684, 0.811, 1e-3, 1 + 0.09);
     
     if (argc > 2)
-        camera->render(stoi(argv[1]), stoi(argv[2]));
+    {
+        camera->render(2500, 200000);
+    }
     else
-        camera->render(stoi(argv[1]));
+    {
+        camera->render(2500, 200000);
+    }
         
     camera->save("result.ppm");
     return 0;

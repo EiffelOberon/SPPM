@@ -25,7 +25,12 @@ public:
     virtual pair<double, Vector> intersect(Ray ray) = 0;
 };
 
-enum { TRIANGULAR_FACE, SPHERE_FACE, BEZIER_FACE } FACE_TYPES;
+enum FaceTypes 
+{ 
+    TRIANGULAR_FACE, 
+    SPHERE_FACE, 
+    BEZIER_FACE 
+};
 
 class TriangularFace : public Face {
 public:
